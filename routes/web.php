@@ -3,12 +3,16 @@
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return 'Hello, World!';
-})->name('root');
+// pages
+Route::get('/', fn() => view('main'))->name('main');
+Route::get('/about', fn() => view('about'))->name('about');
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts');
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::get('/posts/update', [PostController::class, 'update'])->name('posts.update');
-Route::get('/posts/delete', [PostController::class, 'delete'])->name('posts.delete');
-Route::get('/posts/first_or_create', [PostController::class, 'firstOrCreate'])->name('posts.firstOrCreate');
+// post
+Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
+Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::patch('/posts/{post}', [PostController::class, 'update'])->name('post.update');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.delete');
+

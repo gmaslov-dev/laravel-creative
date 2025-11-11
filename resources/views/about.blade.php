@@ -2,10 +2,10 @@
 
 @section('title', 'about')
 
-@section('header')
+@section('head')
 <h1>О блоге</h1>
 @endsection
 
 @section('content')
-<p>Эксперименты с Laravel на Хекслете</p>
+<p>О нас!</p>
 @endsection

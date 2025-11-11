@@ -9,57 +9,49 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('posts', compact('posts')); // ['posts' => $posts]
+        return view('post.index', compact('posts')); // ['post' => $post]
     }
 
     public function create()
     {
-        $postsArr=[
-            [
-                'title' => 'new post3',
-                'content' => 'new content3',
-                'image' => 'lala.jpg3',
-                'likes' => 30,
-                'is_published' => true,
-            ],
-            [
-                'title' => 'new post4',
-                'content' => 'new content4',
-                'image' => 'lala.jpg4',
-                'likes' => 302,
-                'is_published' => true,
-            ]
-        ];
-
-        foreach ($postsArr as $post) {
-            Post::create($post);
-        }
-
-        dd('created');
+        return view('post.create');
     }
 
-    public function update()
+    public function store()
     {
-        $post = Post::find(1);
-        $post->update([
-            'title' => 'update',
-            'content' => 'update',
-            'image' => 'update',
-            'likes' => 30,
-            'is_published' => true,
+        $data = request()->validate([
+            'title' => 'string',
+            'content' => 'string',
+            'image' => 'string',
         ]);
-        dd('update');
+        Post::create($data);
+        return redirect()->route('post.index');
     }
 
-    public function delete()
+    public function show(Post $post) // позволяет выцепить пост, имя перменной должно совпадать с роутом и моделью
     {
-       $post = Post::withTrashed()->find(1);
-       $post->restore();
-       dd('deleted');
+        return view('post.show', compact('post'));
     }
 
-    public function firstOrCreate()
+    public function edit(Post $post)
     {
-        dd(1);
+        return view('post.edit', compact('post'));
+    }
+
+    public function update(Post $post)
+    {
+        $data = request()->validate([
+            'title' => 'string',
+            'content' => 'string',
+            'image' => 'string',
+        ]);
+        $post->update($data);
+        return redirect()->route('post.show', $post->id);
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return redirect()->route('post.index');
     }
 }
