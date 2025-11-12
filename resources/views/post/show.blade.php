@@ -10,6 +10,7 @@
         <div class="row">{{ $post->title }}</div>
         <div class="row">{{ $post->content }}</div>
         <div class="row">{{ $post->image }}</div>
+{{--        <div class="row">{{ $post->category }}</div>--}}
     </div>
     <div class="container">
         <div class="row">
