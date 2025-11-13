@@ -29,6 +29,14 @@
                         @endforeach
                     </select>
                 </div>
+                @foreach($tags as $tag)
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id  }}" id="checkDefault">
+                        <label class="form-check-label" for="checkDefault">
+                            {{ $tag->title }}
+                        </label>
+                    </div>
+                @endforeach
                 <button type="submit" class="btn btn-primary">Create</button>
             </form>
         </div>
