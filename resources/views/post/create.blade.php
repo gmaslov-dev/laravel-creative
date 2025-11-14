@@ -12,6 +12,7 @@
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+                    <p></p>
                 </div>
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>

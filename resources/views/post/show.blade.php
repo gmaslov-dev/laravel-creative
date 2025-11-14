@@ -35,7 +35,7 @@
                         </td>
                         <td>{{ $post->category->title }}</td>
                         <td>
-                            @foreach($tags as $tag)
+                            @foreach($post->tags as $tag)
                                 {{ $tag->title }}
                             @endforeach
                         </td>

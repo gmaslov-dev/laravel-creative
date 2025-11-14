@@ -75,7 +75,6 @@ class PostController extends Controller
         $tags = $data['tags'];
         unset($data['tags']);
 
-        dump($data);
         $post->update($data);
 
         $post->tags()->sync($tags);
